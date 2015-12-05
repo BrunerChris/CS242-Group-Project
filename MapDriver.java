@@ -22,26 +22,19 @@ public class MapDriver
       while(input.hasNext())
       {
         String inputFile = input.nextLine().trim();
-        System.out.println(inputFile);
-        values = inputFile.split("|");
-        char foo = '|';
-        int ascii = (int)foo;
-        System.out.println(ascii);
-        //System.out.println("1\n");
-        System.out.println(values[0] + ", " + values[1] + ", " + values[2]);
-        //System.out.println("2\n");
+        values = inputFile.split("\\|");
+
         MapPoint newPoint = new MapPoint(values[0], values[1], Integer.parseInt(values[2]));
-        //System.out.println("3\n");
         map.add(newPoint);
-        //System.out.println("4\n");
      //   if(i == 0)
      //     head = newPoint;
      //   i++;
       }
     }
-    catch(Exception e)
+    catch(FileNotFoundException | NumberFormatException e)
     {
       System.out.println("ERROR");
     }
+    
   } 
 }
