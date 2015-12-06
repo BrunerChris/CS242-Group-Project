@@ -11,7 +11,6 @@ public class MapDriver
     String filename = "map.txt";
 
     NodeList map = new NodeList();
-    //int i = 0;
     
     try
     {
@@ -26,14 +25,18 @@ public class MapDriver
 
         MapPoint newPoint = new MapPoint(values[0], values[1], Integer.parseInt(values[2]));
         map.add(newPoint);
-     //   if(i == 0)
-     //     head = newPoint;
-     //   i++;
       }
+
+      String output = map.toString();
+      System.out.println(output);
     }
-    catch(FileNotFoundException | NumberFormatException e)
+    catch(FileNotFoundException e)
     {
-      System.out.println("ERROR");
+      System.out.println("File not found.");
+    }
+    catch(NumberFormatException e)
+    {
+      System.out.println("Number format exception.");
     }
     
   } 
