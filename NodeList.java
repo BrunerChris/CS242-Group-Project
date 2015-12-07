@@ -1,3 +1,6 @@
+
+import java.util.ArrayList;
+
 /**
  * The NodeList.java class controls the order of the linked list and can add and remove data from the list
  * @author Nick Gapp
@@ -11,7 +14,7 @@ public class NodeList
 
   /**
    * add adds data to the end of the linked list
-   * @param data The data in the form of a Student that needs to be added to the list
+   * @param
    */
   public void add(MapPoint data)
   {
@@ -32,8 +35,8 @@ public class NodeList
 
   /**
    * remove removes data from the linked list and moves other data around to fill the missing data's spot
-   * @param name The first name of the Student needing to be removed from the list
-   * @return The Student that was removed
+   * @param
+   * @return
    */
   public MapPoint remove(MapPoint point)
   {
@@ -73,9 +76,9 @@ public class NodeList
   }
   
   /**
-   * search searches the linked list for a requested first name of a Student
-   * @param name The first name of the Student in needing of finding
-   * @return The Node where that Student is stored in the linked list
+   * search searches the linked list
+   * @param name
+   * @return
    */
   public Node search(MapPoint point)
   {
@@ -91,10 +94,39 @@ public class NodeList
 
     return null;
   }
+  
+  public Node search(String sp){
+      
+      Node current = head;
+      
+      while(current != null){
+          if(current.getData().getStartPoint().equals(sp))
+              return current;
+          
+          current = current.getNext();
+      }
+      
+      return null;
+  }
 
+ public ArrayList<MapPoint> searchAll(String sp){
+     
+     ArrayList<MapPoint> mp = new ArrayList<>();
+     
+     Node current = head;
+     while(current != null){
+         if(current.getData().getStartPoint().equals(sp))
+             mp.add(current.getData());
+         
+         current = current.getNext();
+     }
+     
+     return mp;
+ }
+  
   /**
-   * numElements counts the number of Students in the linked list
-   * @return The number of Students in the linked list
+   * numElements counts the number of elements in the linked list
+   * @return
    */
   public int numElements()
   {
