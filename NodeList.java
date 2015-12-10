@@ -77,6 +77,7 @@ public class NodeList
   
   /**
    * search searches the linked list
+     * @param point
    * @param name
    * @return
    */
@@ -115,8 +116,15 @@ public class NodeList
      
      Node current = head;
      while(current != null){
-         if(current.getData().getStartPoint().equals(sp))
+         if(current.getData().getStartPoint().equals(sp) && current.getData().getVisit() == false)
              mp.add(current.getData());
+         
+         else if(current.getData().getEndPoint().equals(sp) && current.getData().getVisit() == false){
+             current.getData().setEndPoint(current.getData().getStartPoint());
+             current.getData().setStartPoint(sp);
+             
+             mp.add(current.getData());
+         }
          
          current = current.getNext();
      }
