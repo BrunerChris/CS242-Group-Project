@@ -12,26 +12,45 @@ public class MST {
         this.start = sp;
     }
     
-    //make this recursive?
+    //add counter for total miles driven
     public void driveTo(String sp){
-        //Search for the smallest distance MapPoint based on given starting point.
-        ArrayList<MapPoint> mp = map.searchAll(sp);
-        MapPoint d = mp.get(0);
-        for(int i = 1; i < mp.size(); i++){
-            if((mp.get(i).getDistance() < d.getDistance())  ) //add notVisited logic check
-                d = mp.get(i);
+        //System.out.println("New drive...");
+
+        ArrayList<MapPoint> mapPoints = map.searchAll(sp);
+        if(mapPoints.isEmpty()){
+            System.out.println("Dead end.");
+            return;
         }
-         
-        this.roads.add(d);
-        System.out.println(d.getEndPoint());
-        //return driveTo(d.getEndPoint());
         
+        MapPoint p = mapPoints.get(0);
+        
+        for(int i = 0; i < mapPoints.size(); i++){
+            MapPoint thisPoint = mapPoints.get(i);
+            if( (thisPoint.getDistance() <= p.getDistance()) && thisPoint.getVisit() == false)
+                p = thisPoint;
+        }
+
+        this.roads.add(p);
+        p.setVisit(true);
+        map.search(p.getStartPoint()).setVisit(true);
+        for(MapPoint m : mapPoints){
+            m.setVisit(true);
+        }
+        
+        System.out.println(p.getStartPoint()+"->"+p.getEndPoint());
+
+        driveTo(p.getEndPoint()); 
     }
     
-    public static void main(String[] args){
+    public String getStats(){
         
+        int roadsTravelled = roads.size();
+        int distanceTravelled = 0;
         
+        for(MapPoint p : roads)
+            distanceTravelled+= p.getDistance();
         
+        return "Travelled "+distanceTravelled+" miles on "+roadsTravelled+" roads.";        
     }
    
 }
