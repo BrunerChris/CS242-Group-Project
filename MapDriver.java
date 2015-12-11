@@ -4,9 +4,9 @@ import java.io.*;
 
 public class MapDriver
 {
+    
   public static void main(String[] args)
   {
-    File file;
     Scanner input;
     String filename = "map.txt";
 
@@ -14,21 +14,14 @@ public class MapDriver
     
     try
     {
-      file = new File(filename);
-      input = new Scanner(file);
-      String[] values = new String[3];
+      input = new Scanner(new File(filename));
+      String[] values;
 
       while(input.hasNext())
       {
-        String inputFile = input.nextLine().trim();
-        values = inputFile.split("\\|");
-
-        MapPoint newPoint = new MapPoint(values[0], values[1], Integer.parseInt(values[2]));
-        map.add(newPoint);
+        values = input.nextLine().trim().split("\\|");
+        map.add(new MapPoint(values[0], values[1], Integer.parseInt(values[2])));
       }
-
-      String output = map.toString();
-      //System.out.println(output);
     }
     catch(FileNotFoundException e)
     {
@@ -40,13 +33,16 @@ public class MapDriver
     }
     
     //Minimum Spanning Tree
-    MST mst = new MST(map, "Grand Forks");
+    NodeList mstMap = map;
+    MST mst = new MST(mstMap, "Grand Forks");
     mst.driveTo(mst.start);
     System.out.println(mst.getStats());
     
     //Depth First Search
-    DFS dfs = new DFS(map);
+    NodeList dfsMap = map;
+    DFS dfs = new DFS(dfsMap);
     dfs.drive("Grand Forks");
     
-  } 
+  }
+  
 }
