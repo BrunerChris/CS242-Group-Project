@@ -1,32 +1,48 @@
+import java.util.ArrayList;
+
 public class DFS
 {
-	public DFS(NodeList m, Node v)
+    
+    private  int cities = 1;
+    private int totWeight = 0;
+    private NodeList m;
+    private ArrayList<String> cityNames = new ArrayList<>();
+    
+    public DFS(NodeList m){
+        
+        this.m = m;
+        
+    }
+    
+    public void drive(String start){
+      
+	cityNames.add(start);
+
+	ArrayList<MapPoint> mp = m.searchAll(start);
+
+        for(int i = 0; i < mp.size(); i++)
 	{
-		//System.out.println("You made it in the constructor");
+            if(mp.get(i).getVisit() == false && mp.get(i).getBackEdge() == false && !cityNames.contains(mp.get(i).getEndPoint()))
+            {
+                mp.get(i).setVisit(true);
+		mp.get(i).setBackEdge(true);
 
-		int totWeight = 0;
-		v.setVisit(true);
+                String search = mp.get(i).getEndPoint();
+		System.out.println("City: " + search);
 
+                totWeight = totWeight + mp.get(i).getDistance();
+		System.out.println("Total Weight: " + totWeight);
 
+                cities = cities + 1;
+		System.out.println("# of Cities: " + cities);
 
-		//NOT DONE YET
-		/*for (MapPoint mp :
-		{
-			if(mp.getVisit() == false)
-			{
-				Node w = mp.getEndPoint();
-				if (w.getVisit() == false)
-				{
-					totWeight = totWeight + mp.getDistance();
-					mp.setVisit(true);
-					DFS go2 = new DFS(m, w);
-				}
-				else
-				{
-					mp.setBackEdge(true);
-					DFS go3 = new DFS(m, v);
-				}
-			}
-		}*/
-	}
+                System.out.println("");
+
+		drive(search);
+	    }
+			
+	}        
+        
+    }
+        
 }
