@@ -4,9 +4,9 @@ import java.io.*;
 
 public class MapDriver
 {
-    
-  public static void main(String[] args)
-  {
+  
+  public static NodeList createMap(){
+     
     Scanner input;
     String filename = "map.txt";
 
@@ -32,15 +32,23 @@ public class MapDriver
       System.out.println("Number format exception.");
     }
     
+    return map;
+  }  
+    
+  public static void main(String[] args)
+  {
+        
     //Minimum Spanning Tree
-    NodeList mstMap = map;
-    MST mst = new MST(mstMap, "Grand Forks");
+    NodeList map = createMap();
+    MST mst = new MST(map, "Grand Forks");
     mst.driveTo(mst.start);
     System.out.println(mst.getStats());
     
+    System.out.println();
+    
     //Depth First Search
-    NodeList dfsMap = map;
-    DFS dfs = new DFS(dfsMap);
+    map = createMap();
+    DFS dfs = new DFS(map);
     dfs.drive("Grand Forks");
     
   }
