@@ -28,7 +28,7 @@ public class MapDriver
       }
 
       String output = map.toString();
-      System.out.println(output);
+      //System.out.println(output);
     }
     catch(FileNotFoundException e)
     {
@@ -38,6 +38,15 @@ public class MapDriver
     {
       System.out.println("Number format exception.");
     }
+    
+    //Minimum Spanning Tree
+    MST mst = new MST(map, "Grand Forks");
+    mst.driveTo(mst.start);
+    System.out.println(mst.getStats());
+    
+    //Depth First Search
+    DFS dfs = new DFS(map);
+    dfs.drive("Grand Forks");
     
   } 
 }
