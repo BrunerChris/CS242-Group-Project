@@ -25,25 +25,22 @@ public class BFS{
         //add where you start to the queue
         q.add(root);
         root.setVisit(true);
-        
+        //System.out.println(root.getNext().getData());
         while(!q.isEmpty()){
             
             //remove the first object in the queue
             Node v = q.poll();
             
-            s = v.getData().getStartPoint();
+//            s = v.getData().getStartPoint();
             ArrayList<MapPoint> mapPoints = map.searchAll(s);
-            for(//each node connected to the initial node){
-                if(//the connected node has not been visited){
+//            for(//each node connected to the initial node){
+//                if(//the connected node has not been visited){
                     
-                }
+//                }
                 
-            }
-//        if(mapPoints.isEmpty()){
-//            return;
-//        }
-        
-        }
+//            }
+      }
+
         
     }
     
