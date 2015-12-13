@@ -1,74 +1,58 @@
 public class MapPoint
 {
-	private String StartingPoint = null;
-	private String EndingPoint = null;
-	private int distance = 0;
-	private boolean visited = false;
-	private boolean backEdge = false;
+  private String StartingPoint = null;
+  private String EndingPoint = null;
+  private int distance = 0;
 
-	public MapPoint(String sp, String ep, int d)
-	{
-		StartingPoint = sp;
-		EndingPoint = ep;
-		distance = d;
-		visited = false;
-		backEdge = false;
-	}
+  public MapPoint(String sp, String ep, int d)
+  {
+    StartingPoint = sp;
+    EndingPoint = ep;
+    distance = d;
+  }
 
-	public String getStartPoint()
-	{
-		return StartingPoint;
-	}
+  public String getStartPoint()
+  {
+    return StartingPoint;
+  }
 
-	public String getEndPoint()
-	{
-		return EndingPoint;
-	}
+  public String getEndPoint()
+  {
+    return EndingPoint;
+  }
 
-	public int getDistance()
-	{
-		return distance;
-	}
+  public int getDistance()
+  {
+    return distance;
+  }
 
-	public boolean getVisit()
-	{
-		return visited;
-	}
+  public void setStartPoint(String input)
+  {
+    StartingPoint = input;
+  }
 
-	public boolean getBackEdge()
-	{
-		return backEdge;
-	}
+  public void setEndPoint(String input)
+  {
+    EndingPoint = input;
+  }
 
-	public void setStartPoint(String input)
-	{
-		StartingPoint = input;
-	}
+  public void setDistance(int input)
+  {
+    distance = input;
+  }
 
-	public void setEndPoint(String input)
-	{
-		EndingPoint = input;
-	}
+  public String toString()
+  {
+    String output = "Starting point: " + getStartPoint() + "\nEnding point: " + getEndPoint() + "\nDistance: " + getDistance();
 
-	public void setDistance(int input)
-	{
-		distance = input;
-	}
+    return output;
+  }
 
-	public void setVisit(boolean b)
-	{
-		visited = b;
-	}
-
-	public void setBackEdge(boolean t)
-	{
-		backEdge = t;
-	}
-
-	public String toString()
-	{
-		String output = "Starting point: " + getStartPoint() + "\nEnding point: " + getEndPoint() + "\nDistance: " + getDistance();
-		return output;
-	}
-
+  public boolean equals(MapPoint p)
+  {
+    if(this.getStartPoint().equals(p.getStartPoint()) && this.getEndPoint().equals(p.getEndPoint()) && this.getDistance() == p.getDistance())
+      return true;
+    else
+      return false;
+  }
 }
