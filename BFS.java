@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -19,29 +18,44 @@ public class BFS{
     public void drive(String start){
         
         String s = start;
-        Queue<Node> q = new LinkedList();
-        Node root = map.search(s);
+        Queue<MapPoint> q = new LinkedList();
         
-        //add where you start to the queue
-        q.add(root);
-        root.setVisit(true);
-        //System.out.println(root.getNext().getData());
+        //Adds all connections from the start to the queue and sets them to visited.
+        ArrayList<MapPoint> mp = map.searchAll(s);
+        for(MapPoint p : mp){
+            q.add(p);
+            p.setVisit(true);
+            weight = weight + p.getDistance();
+            cities.add(p.getEndPoint());
+            
+            System.out.println(p.getStartPoint()+"->"+p.getEndPoint());
+            System.out.println("Total Weight: " + weight);
+            System.out.println("");
+        }
+        
         while(!q.isEmpty()){
             
-            //remove the first object in the queue
-            Node v = q.poll();
+            //dequeue the first MapPoint, set to visited and get all MapPoints from their endPoints.
+            MapPoint n = q.poll();
+            n.setVisit(true);
+            mp = map.searchAll(n.getEndPoint());
             
-//            s = v.getData().getStartPoint();
-            ArrayList<MapPoint> mapPoints = map.searchAll(s);
-//            for(//each node connected to the initial node){
-//                if(//the connected node has not been visited){
+            //goes through all points from the next city in the queue and adds them to the queue if unvisited.
+            for(MapPoint p : mp){
+                if(p.getVisit() == false && !cities.contains(p.getEndPoint())){
+                    q.add(p);
+                    p.setVisit(true);
+                    weight = weight + p.getDistance();
+                    cities.add(p.getEndPoint());
                     
-//                }
-                
-//            }
-      }
+                    System.out.println(p.getStartPoint()+"->"+p.getEndPoint());
+                    System.out.println("Total Weight: " + weight);
+                    System.out.println("");
+                }
+            }
 
-        
-    }
+        }
+
+      }
     
 }
