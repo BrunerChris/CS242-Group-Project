@@ -1,4 +1,3 @@
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -20,7 +19,7 @@ public class BFS{
         
         String s = start;
         Queue<MapPoint> q = new LinkedList();
-
+        
         //Adds all connections from the start to the queue and sets them to visited.
         ArrayList<MapPoint> mp = map.searchAll(s);
         for(MapPoint p : mp){
@@ -29,7 +28,7 @@ public class BFS{
             
             System.out.println(p.getStartPoint()+"->"+p.getEndPoint());
         }
-
+        
         while(!q.isEmpty()){
             
             //dequeue the first MapPoint, set to visited and get all MapPoints from their endPoints.
@@ -47,7 +46,6 @@ public class BFS{
                 }
             }
 
-            //System.out.println(q);
         }
 
       }
