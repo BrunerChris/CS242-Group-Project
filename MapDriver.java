@@ -38,18 +38,23 @@ public class MapDriver
   public static void main(String[] args)
   {
         
-    //Minimum Spanning Tree
+//    //Minimum Spanning Tree
     NodeList map = createMap();
-    MST mst = new MST(map, "Grand Forks");
-    mst.driveTo(mst.start);
-    System.out.println(mst.getStats());
-    
-    System.out.println();
-    
-    //Depth First Search
+//    MST mst = new MST(map, "Grand Forks");
+//    mst.driveTo(mst.start);
+//    System.out.println(mst.getStats());
+//    
+//    System.out.println();
+//    
+//    //Depth First Search
+//    map = createMap();
+//    DFS dfs = new DFS(map);
+//    dfs.drive("Grand Forks");
+      
+    //Breadth First Search
     map = createMap();
-    DFS dfs = new DFS(map);
-    dfs.drive("Grand Forks");
+    BFS bfs = new BFS(map);
+    bfs.drive("Grand Forks");
     
   }
   
