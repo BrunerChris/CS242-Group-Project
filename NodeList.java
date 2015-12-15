@@ -88,20 +88,27 @@ public class NodeList
       return null;
   }
 
-  public ArrayList<MapPoint> searchAll(String sp){
-      
-      ArrayList<MapPoint> mp = new ArrayList<MapPoint>();
-      
-      Node current = head;
-      while(current != null){
-          if(current.getData().getStartPoint().equals(sp))
-              mp.add(current.getData());
-          
-          current = current.getNext();
-      }
-      
-      return mp;
-  }
+ public ArrayList<MapPoint> searchAll(String sp){
+     
+     ArrayList<MapPoint> mp = new ArrayList<>();
+     
+     Node current = head;
+     while(current != null){
+         if(current.getData().getStartPoint().equals(sp) && current.getData().getVisit() == false)
+             mp.add(current.getData());
+         
+         else if(current.getData().getEndPoint().equals(sp) && current.getData().getVisit() == false){
+             current.getData().setEndPoint(current.getData().getStartPoint());
+             current.getData().setStartPoint(sp);
+             
+             mp.add(current.getData());
+         }
+         
+         current = current.getNext();
+     }
+     
+     return mp;
+ }
 
   public ArrayList<MapPoint> searchAllSSSP(String sp) {
   
