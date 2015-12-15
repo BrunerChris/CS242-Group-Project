@@ -30,4 +30,9 @@ public class Vertex
   {
     prev = input;
   }
+  
+  public Vertex getPrev()
+  {
+    return prev;
+  }
 }
