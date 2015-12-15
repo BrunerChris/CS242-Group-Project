@@ -76,6 +76,18 @@ public class MapDriver
 		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		System.out.println("");
 
+		//Single Source Shortest Path
+		System.out.println("SSSP Results");
+		System.out.println("");
+		map = createMap();
+		SSSP sssp = new SSSP(map);
+		String[] cities = {"Grand Forks", "Seattle", "San Diego", "Houston", "Key West", "New York City", "Chicago", "Grand Forks"};
+		for(int i=0; i<(cities.length-1); i++)
+		{
+			String out = sssp.drive(map, cities[i], cities[i+1]);
+			System.out.println(out);
+		}
+		
 	}
 
 }
