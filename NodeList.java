@@ -1,21 +1,10 @@
 
 import java.util.ArrayList;
 
-/**
- * The NodeList.java class controls the order of the linked list and can add and remove data from the list
- * @author Nick Gapp
- * @version 1.0
- * @since 11/13/2014
- */
-
 public class NodeList
 {
   Node head = null;
 
-  /**
-   * add adds data to the end of the linked list
-   * @param
-   */
   public void add(MapPoint data)
   {
     if(head == null)
@@ -33,11 +22,6 @@ public class NodeList
     }
   }
 
-  /**
-   * remove removes data from the linked list and moves other data around to fill the missing data's spot
-   * @param
-   * @return
-   */
   public MapPoint remove(MapPoint point)
   {
     Node target = search(point);
@@ -75,12 +59,6 @@ public class NodeList
     }
   }
   
-  /**
-   * search searches the linked list
-     * @param point
-   * @param name
-   * @return
-   */
   public Node search(MapPoint point)
   {
     Node current = head;
@@ -110,32 +88,43 @@ public class NodeList
       return null;
   }
 
- public ArrayList<MapPoint> searchAll(String sp){
-     
-     ArrayList<MapPoint> mp = new ArrayList<>();
-     
-     Node current = head;
-     while(current != null){
-         if(current.getData().getStartPoint().equals(sp) && current.getData().getVisit() == false)
-             mp.add(current.getData());
-         
-         else if(current.getData().getEndPoint().equals(sp) && current.getData().getVisit() == false){
-             current.getData().setEndPoint(current.getData().getStartPoint());
-             current.getData().setStartPoint(sp);
-             
-             mp.add(current.getData());
-         }
-         
-         current = current.getNext();
-     }
-     
-     return mp;
- }
+  public ArrayList<MapPoint> searchAll(String sp){
+      
+      ArrayList<MapPoint> mp = new ArrayList<MapPoint>();
+      
+      Node current = head;
+      while(current != null){
+          if(current.getData().getStartPoint().equals(sp))
+              mp.add(current.getData());
+          
+          current = current.getNext();
+      }
+      
+      return mp;
+  }
+
+  public ArrayList<MapPoint> searchAllSSSP(String sp) {
   
-  /**
-   * numElements counts the number of elements in the linked list
-   * @return
-   */
+    ArrayList<MapPoint> mp = new ArrayList<MapPoint>();
+                     
+    Node current = head;
+    while(current != null){
+      if(current.getData().getStartPoint().equals(sp))
+        mp.add(current.getData());
+    
+      else if(current.getData().getEndPoint().equals(sp)) {
+        current.getData().setEndPoint(current.getData().getStartPoint());
+        current.getData().setStartPoint(sp);
+    
+        mp.add(current.getData());
+      }
+    
+      current = current.getNext();
+    }
+    
+    return mp;
+  }
+  
   public int numElements()
   {
     Node current = head;
@@ -153,10 +142,11 @@ public class NodeList
     return count;
   }
 
-  /**
-   * toString returns information about what is inside the NodeList
-   * @return A String containing information about the contents of the NodeList
-   */
+  public Node getHead()
+  {
+    return head;
+  }
+
   public String toString()
   {
     Node current = head;
